@@ -1,0 +1,74 @@
+package teamnarwhal;
+
+import java.text.DecimalFormat;
+import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.geometry.*;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
+import javafx.scene.layout.*;
+import javafx.stage.Stage;
+public class TeamNarwhal extends Application {
+Scene scene1, scene2;
+    
+@Override
+public void start(Stage primaryStage) {
+        
+primaryStage.setTitle("Narwhal Compliment Generator");
+	GridPane grid= new GridPane();
+	grid.setAlignment(Pos.TOP_CENTER);
+
+	grid.setPadding(new Insets(25, 25, 25, 25));
+
+	grid.setHgap(10);
+
+	grid.setVgap(10);
+
+//Scene 1
+//add text field
+  grid.add(new Label("HELLO! WHAT IS YOUR NAME?"), 0, 0);
+		TextField name = new TextField();
+		grid.add(name, 0, 4);
+                String myName = name.getText();
+//submit button box
+HBox buttonBox = new HBox(15);
+Button sendName= new Button("Submit");
+buttonBox.getChildren().add(sendName);
+grid.add(buttonBox, 0, 8, 2, 1); //setting button location
+//setting action for button
+sendName.setOnAction(e -> primaryStage.setScene(scene2));   
+//scene layout with grid
+scene1= new Scene(grid, 400, 300);
+               
+//Scene 2
+primaryStage.setTitle("Narwhal Compliment Generator");
+	GridPane grid2= new GridPane();
+	grid2.setAlignment(Pos.TOP_CENTER);
+
+	grid2.setPadding(new Insets(25, 25, 25, 25));
+
+	grid2.setHgap(10);
+
+	grid2.setVgap(10);
+        
+        //hello _ name! text field
+         grid2.add(new Label("HELLO! " + myName), 0, 0);
+        
+        //buttonbox 2 for going back to the previous interface
+        HBox buttonBox2 = new HBox(15);
+Button back = new Button("Back"); 
+buttonBox2.getChildren().add(back);
+grid2.add(buttonBox2, 0, 8 , 2, 1);
+back.setOnAction(e -> primaryStage.setScene(scene1));
+scene2= new Scene(grid2,400,300);
+        
+        
+primaryStage.setScene(scene1);
+primaryStage.show();
+}
+
+public static void main(String[] args) {
+launch(args);
+}
+    
+}
